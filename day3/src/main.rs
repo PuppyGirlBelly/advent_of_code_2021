@@ -2,6 +2,7 @@ use std::io::{self, BufRead, BufReader};
 use std::fs::File;
 
 fn main() {
+    // let file = File::open(String::from("input.txt")).unwrap();
     let file = File::open(String::from("input.txt")).unwrap();
     let reader = BufReader::new(file);
     let lines: Vec<String> = reader.lines().filter_map(io::Result::ok).collect();
@@ -47,17 +48,20 @@ fn oxygen_filter(nums: Vec<String>, i: usize) -> String {
         return result;
     }
 
-    let mut counter: usize = 0;
+    let mut one_counter: usize = 0;
+    let mut zero_counter: usize = 0;
     let filter: char;
     let mut filtered_nums: Vec<String> = Vec::new();
 
     for line in &nums {
         if line.chars().nth(i).unwrap() == '1' {
-            counter += 1;
+            one_counter += 1;
+        } else {
+            zero_counter += 1;
         }
     }
 
-    if counter >= (nums.len()/2) {
+    if one_counter >= zero_counter {
         filter = '1';
     } else {
         filter = '0';
@@ -78,20 +82,23 @@ fn co2_filter(nums: Vec<String>, i: usize) -> String {
         return result;
     }
 
-    let mut counter: usize = 0;
+    let mut one_counter: usize = 0;
+    let mut zero_counter: usize = 0;
     let filter: char;
     let mut filtered_nums: Vec<String> = Vec::new();
 
     for line in &nums {
         if line.chars().nth(i).unwrap() == '1' {
-            counter += 1;
+            one_counter += 1;
+        } else {
+            zero_counter += 1;
         }
     }
 
-    if counter <= (nums.len()/2) {
-        filter = '1';
-    } else {
+    if zero_counter <= one_counter {
         filter = '0';
+    } else {
+        filter = '1';
     }
 
     for line in &nums {
@@ -100,7 +107,7 @@ fn co2_filter(nums: Vec<String>, i: usize) -> String {
         }
     }
 
-    oxygen_filter(filtered_nums, i+1)
+    co2_filter(filtered_nums, i+1)
 }
 
 fn line_to_vec(line: String) -> Vec<u32> {
