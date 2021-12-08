@@ -1,5 +1,5 @@
-use std::io::{self, BufRead, BufReader};
 use std::fs::File;
+use std::io::{self, BufRead, BufReader};
 
 fn main() {
     let lines: Vec<u16> = file_to_vec(String::from("input.txt"));
@@ -7,8 +7,8 @@ fn main() {
     let mut last_total: u16 = 65535;
     let mut current_total: u16;
 
-    for x in 0..(lines.len()-2) {
-        current_total = lines[x] + lines[x+1] + lines[x+2];
+    for x in 0..(lines.len() - 2) {
+        current_total = lines[x] + lines[x + 1] + lines[x + 2];
 
         if is_bigger(&current_total, &last_total) {
             increase_count += 1;
@@ -34,7 +34,11 @@ fn line_to_u16(line: String) -> u16 {
 fn file_to_vec(filename: String) -> Vec<u16> {
     let file = File::open(filename).unwrap();
     let reader = BufReader::new(file);
-    reader.lines().filter_map(io::Result::ok).map(|s| line_to_u16(s)).collect()
+    reader
+        .lines()
+        .filter_map(io::Result::ok)
+        .map(|s| line_to_u16(s))
+        .collect()
 }
 
 #[cfg(test)]
@@ -69,6 +73,11 @@ mod tests {
 
     #[test]
     fn file_to_u16_vec() {
-        assert_eq!(file_to_vec(String::from("/mnt/c/Users/SamanthaC/Advent_Of_Code_2021/day1/src/test_input.txt")), [100, 200, 300])
+        assert_eq!(
+            file_to_vec(String::from(
+                "/mnt/c/Users/SamanthaC/Advent_Of_Code_2021/day1/src/test_input.txt"
+            )),
+            [100, 200, 300]
+        )
     }
 }
