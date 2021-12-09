@@ -1,1 +1,1 @@
-/mnt/c/Users/SamanthaC/Advent_Of_Code_2021/day8/target/debug/day8: /mnt/c/Users/SamanthaC/Advent_Of_Code_2021/day8/src/line.rs /mnt/c/Users/SamanthaC/Advent_Of_Code_2021/day8/src/main.rs
+/home/sammi/advent_of_code_2021/day8/target/debug/day8: /home/sammi/advent_of_code_2021/day8/src/line.rs /home/sammi/advent_of_code_2021/day8/src/main.rs

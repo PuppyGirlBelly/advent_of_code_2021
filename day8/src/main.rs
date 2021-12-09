@@ -4,13 +4,24 @@ use std::time::Instant;
 use std::fs::read_to_string;
 
 mod line;
+use line::Line;
 
 fn main() {
     let start: Instant = Instant::now();
 
-    let input: Vec<_> = file_to_vec(String::from("src/input.txt"));
+    let input: Vec<String> = file_to_vec(String::from("src/example_input.txt"));
+    let lines: Vec<Line> = input.iter().map(|x| Line::new(x)).collect::<Vec<_>>();
+    let mut total: u32 = 0;
+    let mut output: u16;
 
-    println!("known numbers {:?}", input);
+    for mut line in lines {
+        line.find_key();
+        output = line.decode_output();
+        total += output as u32;
+        println!("{}",output);
+    }
+
+    println!("sum of output: {}", total);
 
     println!("This main took: {:?}", Instant::now().duration_since(start));
 }
