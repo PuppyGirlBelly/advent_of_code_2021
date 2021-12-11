@@ -3,6 +3,9 @@ use std::fs::File;
 // use std::fs::read_to_string;
 use std::time::Instant;
 
+mod map;
+use map::Map;
+
 fn main() {
     let start: Instant = Instant::now();
     let file: File = File::open(String::from("src/input.txt")).unwrap();

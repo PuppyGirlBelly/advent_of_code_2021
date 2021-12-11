@@ -1,3 +1,0 @@
-forward 8
-down 8
-up 1
